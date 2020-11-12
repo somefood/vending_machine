@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    자판기 모델입니다.
-</body>
-</html>
+{% extends 'index.html' %}
+{% block contents %}
+    <div class="h2">자판기 목록</div>
+    <ul class="list-group">
+    {% for vm in object_list %}
+        <li class="list-group-item">
+            <div class=""><a href="{{ vm.get_absolute_url }}">{{ vm }}</a></div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

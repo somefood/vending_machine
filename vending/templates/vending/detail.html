@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block contents %}
+    <section class="vending-machine">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="h2 text-center vm-header">{{ vm }}</div>
+            </div>
+        </div>
+        <div class="vm-body">
+            <div class="d-flex vm-item">
+            {% for item in vm.vendingitem_set.all %}
+                <div class="d-flex flex-column">
+                    <div class="vm-item-title">{{ item.name }}</div>
+                    <div class="vm-item-body">body</div>
+                    <div class="vm-item-price">{{ item.price }}</div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

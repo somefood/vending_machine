@@ -1,0 +1,23 @@
+.vending-machine {
+    min-height: 100vh;
+    background-color: red;
+}
+
+.vm-header {
+    background-color: white;
+    border-radius: 25px;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.vm-body {
+    margin: 0 auto;
+    background-color: aqua;
+    border-radius: 25px;
+    min-height: 500px;
+    width: calc(100% - 50px);
+}
+
+.vm-item {
+    padding: 20px;
+}
