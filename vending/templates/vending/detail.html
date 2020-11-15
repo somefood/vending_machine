@@ -2,21 +2,26 @@
 
 {% block contents %}
     <section class="vending-machine">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="h2 text-center vm-header">{{ vm }}</div>
-            </div>
+        <div class="vm-header">
+            <div class="h2 text-center">{{ vm }}</div>
         </div>
         <div class="vm-body">
-            <div class="d-flex vm-item">
+            <div class="d-flex window vm-item">
             {% for item in vm.vendingitem_set.all %}
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column item" style="background-color: {{ item.color }}">
                     <div class="vm-item-title">{{ item.name }}</div>
                     <div class="vm-item-body">body</div>
                     <div class="vm-item-price">{{ item.price }}</div>
                 </div>
             {% endfor %}
             </div>
+            <div class="d-flex vm-transaction">
+                <div class="money">돈 넣는 곳</div>
+                <div class="exit">물건 나오는 곳</div>
+            </div>
+        </div>
+        <div>
+            Seokju Company
         </div>
     </section>
 {% endblock %}

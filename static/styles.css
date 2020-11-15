@@ -1,23 +1,73 @@
+body {
+    background-color: #fed394;
+}
+
 .vending-machine {
-    min-height: 100vh;
-    background-color: red;
+    min-height: 80vh;
+    background-color: #e9413d;
+    width: 50%;
+    border: 5px solid #000;
+    border-radius: 10px;
+    margin: 100px auto 0;
+    position: relative;
 }
 
 .vm-header {
     background-color: white;
-    border-radius: 25px;
-    width: 50%;
+    border-radius: 10px;
+    width: 100%;
     margin: 20px auto;
+    position: absolute;
+    top: -13%;
+    border: 5px solid #000;
+}
+
+.vm-header .h2 {
+    line-height: 55px;
+    margin-bottom: 0;
+    letter-spacing: 0.5rem;
 }
 
 .vm-body {
-    margin: 0 auto;
-    background-color: aqua;
+    display: flex;
+    margin-top: 20px
+}
+
+.vm-body .window{
+    margin: 0 20px 0 20px;
+    background-color: #30a8db;
+    border: 5px solid #000;
     border-radius: 25px;
     min-height: 500px;
-    width: calc(100% - 50px);
+    flex-basis: 60%;
 }
 
 .vm-item {
     padding: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.vm-item .item {
+    padding: 10px;
+}
+
+.vm-transaction {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.money {
+    width: 100%;
+    border: 5px solid #000;
+    background-color: #929294;
+}
+
+.exit {
+    width: 100%;
+    border: 5px solid #000;
+    background-color: #929294;
 }
