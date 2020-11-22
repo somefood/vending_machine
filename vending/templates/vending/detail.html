@@ -10,13 +10,15 @@
             {% for item in vm.vendingitem_set.all %}
                 <div class="d-flex flex-column item">
                     <div class="vm-item-title">{{ item.name }}</div>
-                    <div class="vm-item-body" style="background-color: {{ item.color }}">body</div>
+                    <div class="vm-item-body" style="background-color: {{ item.color }}"></div>
                     <div class="vm-item-price">
+                        <span class="quantity">
                             {% if item.quantity %}
                                 O
                             {% else %}
                                 X
                             {% endif %}
+                        </span>
                         <button class="beverage">
                             {{ item.price }}
                         </button>
@@ -44,13 +46,18 @@ let money = 0;
 const insert = document.querySelector('#insert');
 insert.addEventListener('click', function(e){
     money = prompt('얼마를 넣으십니까?');
-    money = parseInt(money)
+    money = parseInt(money);
     if (isNaN(money)){
         alert("숫자만 입력해주세요.")
         return 0;
     }
     if (money % 10 === 0) {
         document.querySelector('.print-money').innerHTML = String(money);
+        const qts = document.querySelectorAll('.quantity')
+        // ES6 버전으로 한번 작성해보
+        Array.from(qts, x => {
+            x.style.color = "red";
+        })
     } else {
         alert("10원 단위로 입력해주세요.");
     }
@@ -66,19 +73,27 @@ refund.addEventListener('click', function(e){
         document.querySelector('.print-money').innerHTML = String(money);
     }
     alert(refund_list)
+    const qts = document.querySelectorAll('.quantity')
+    // ES6 버전으로 한번 작성해보
+    Array.from(qts, x => {
+        x.style.color = "black";
+    })
 });
 
 let items = document.querySelectorAll('.beverage');
 Array.from(items).forEach(function(item){
     item.addEventListener('click', function(e){
         let target = e.currentTarget;
-        console.log(target);
         let item_price = parseInt(target.innerHTML);
+        let quantity = target.previousElementSibling;
         if (money === 0) {
             alert("돈을 넣어주세요.");
             return 0;
         } else if (money < item_price) {
             alert("돈이 부족합니다.");
+            return 0;
+        } else if (quantity.innerHTML.trim() === 'X') {
+            alert('재고가 없습니다.')
             return 0;
         } else {
             const select =  confirm("구입하시겠습니까?");
