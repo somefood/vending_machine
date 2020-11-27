@@ -15,7 +15,7 @@ class VendingMachine(models.Model):
         return f"{self.name}"
 
     def get_absolute_url(self):
-        return reverse('vending:detail', args=[self.id])
+        return reverse('vending:vm_detail', args=[self.id])
 
     class Meta:
         verbose_name = '자판기'
@@ -36,6 +36,9 @@ class VendingItem(models.Model):
         if not getattr(self, 'color'):
             self.color = set_hex_color()
         super().save(*args, **kwargs)
+
+    def get_absolute_rul(self):
+        return reverse('vending:item_detail', args=[self.id])
 
     class Meta:
         verbose_name = '상품'
