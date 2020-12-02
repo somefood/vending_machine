@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from .models import VendingMachine, VendingItem
@@ -19,5 +20,4 @@ def item_update_view(request, pk):
         item = get_object_or_404(VendingItem, pk=pk)
         item.quantity -= 1
         item.save()
-        vm = item.vending_machine
-    return redirect(vm)
+    return JsonResponse({'quantity': item.quantity})

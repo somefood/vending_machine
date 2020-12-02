@@ -58,13 +58,13 @@ Array.from(items).forEach(function(item){
             if (select){
                 money -= item_price;
                 document.querySelector('.print-money').innerHTML = String(money);
-                saveQuantity(item_pk);
+                saveQuantity(target, item_pk);
             }
         }
     })
 });
 
-function saveQuantity(pk) {
+function saveQuantity(target, pk) {
     const url = myGlobal.item_url.replace(1, pk);
     $.ajax({
         url: url,
@@ -72,5 +72,10 @@ function saveQuantity(pk) {
         data: {
             csrfmiddlewaretoken: myGlobal.csrfmiddlewaretoken
         },
+        success: function(response) {
+            if (response.quantity <=0 ){
+                target.previousElementSibling.innerHTML = "X";
+            }
+        }
     })
 }
