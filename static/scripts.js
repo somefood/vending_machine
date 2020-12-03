@@ -22,14 +22,26 @@ insert.addEventListener('click', function(e){
 
 const refund = document.querySelector('#refund');
 refund.addEventListener('click', function(e){
-    const curreny_list =  [5000, 1000, 500, 100, 50, 10];
+    const currency_list =  [5000, 1000, 500, 100, 50, 10];
     let refund_list = []
-    for(let i=0; i<curreny_list.length; i++){
-        refund_list[i] = Math.floor(money / curreny_list[i])
-        money %= curreny_list[i]
+    for(let i=0; i<currency_list.length; i++){
+        refund_list[i] = Math.floor(money / currency_list[i])
+        money %= currency_list[i]
         document.querySelector('.print-money').innerHTML = String(money);
     }
-    alert(refund_list)
+    console.log(refund_list)
+    const return_area = document.querySelector("#return-area");
+    return_area.innerHTML = "";
+    for (let i=0; i<currency_list.length; i++) {
+        for (let j=0; j<refund_list[i]; j++){
+            let currency = currency_list[i]
+            let newDiv = document.createElement("div");
+            if (currency >= 1000) newDiv.className = `paper money-${currency}`;
+            else newDiv.className = `coin money-${currency}`;
+            newDiv.innerHTML = String(currency);
+            return_area.append(newDiv);
+        }
+    }
     const qts = document.querySelectorAll('.quantity')
     // ES6 버전으로 한번 작성해보
     Array.from(qts, x => {
